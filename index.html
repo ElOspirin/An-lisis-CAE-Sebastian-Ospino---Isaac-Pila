@@ -73,6 +73,18 @@ code{display:block;margin-top:10px;background:#0d1015;padding:10px;border-radius
 .qrw{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-top:12px}
 #qrbox{background:#fff;padding:10px;border-radius:10px;min-width:200px;min-height:200px}
 .qrw input{width:100%;background:#0d1015;border:1px solid var(--ln);border-radius:8px;color:var(--tx);padding:10px;font:inherit}
+.cfg{--c:var(--y);margin-top:22px;background:var(--card);border:2px solid var(--y);border-radius:16px;padding:18px 20px}
+.mode{display:inline-flex;flex-wrap:wrap;background:#0d1015;border:1px solid var(--ln);border-radius:12px;padding:4px;margin-bottom:10px}
+.mode button{background:none;border:0;color:var(--mut);padding:9px 18px;border-radius:9px;font:inherit;font-weight:700;cursor:pointer}
+.mode button.on{background:var(--y);color:#111}
+.shared{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 28px}
+.bc rect{animation:gr .55s both;transform-box:fill-box}@keyframes gr{from{transform:scaleY(0)}}
+.addcard{border:2px dashed var(--y);background:transparent;color:var(--tx);border-radius:16px;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;font:inherit;padding:20px;transition:background .15s,transform .15s}
+.addcard:hover{background:rgba(245,196,0,.07);transform:translateY(-2px)}
+.plus{width:72px;height:72px;border-radius:50%;background:var(--y);color:#111;font-size:2.8rem;font-weight:800;display:grid;place-items:center;line-height:1;box-shadow:0 5px 0 #b89300}
+.addcard small{color:var(--mut);max-width:260px}
+.rm{position:absolute;top:10px;right:10px;background:#0d1015;border:1px solid var(--ln);color:var(--mut);border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit;font-size:.8rem;z-index:2}
+.rm:hover{color:var(--tx);border-color:var(--r)}
 .intro{position:relative}.r2{position:absolute;right:22px;top:14px;width:66px;animation:fl 3s ease-in-out infinite}
 @keyframes fl{50%{transform:translateY(-6px)}}
 .intro>h2,.intro>#t_ip{padding-right:84px}
@@ -100,6 +112,12 @@ code{display:block;margin-top:10px;background:#0d1015;padding:10px;border-radius
 <section class="intro"><svg class="r2" viewBox="0 0 80 110" aria-hidden="true"><rect x="6" y="58" width="11" height="40" rx="4" fill="#cfd6dc"/><rect x="63" y="58" width="11" height="40" rx="4" fill="#cfd6dc"/><rect x="2" y="94" width="20" height="9" rx="3" fill="#aab3bb"/><rect x="58" y="94" width="20" height="9" rx="3" fill="#aab3bb"/><rect x="14" y="34" width="52" height="58" rx="8" fill="#e9eef3"/><path d="M14 38 Q14 6 40 6 Q66 6 66 38Z" fill="#e9eef3"/><rect x="14" y="36" width="52" height="5" fill="#1f6fb5"/><circle cx="40" cy="22" r="7" fill="#111"/><circle cx="40" cy="22" r="3.2" fill="#00a2ff"/><rect x="20" y="12" width="9" height="7" rx="2" fill="#1f6fb5"/><rect x="51" y="12" width="9" height="7" rx="2" fill="#1f6fb5"/><rect x="28" y="50" width="24" height="16" rx="3" fill="#1f6fb5"/><circle cx="35" cy="58" r="3" fill="#e9eef3"/><circle cx="45" cy="58" r="3" fill="#ff2a2a"/><rect x="24" y="72" width="32" height="8" rx="2" fill="#aab3bb"/></svg><h2 id="t_ih"></h2><div id="t_ip" class="sub" style="font-size:1rem;color:var(--tx)"></div>
  <div class="steps" id="steps"></div></section>
 
+<section class="cfg">
+ <h2 id="t_cfg" style="margin:4px 0;font-size:1.1rem"></h2><div class="sub" id="t_cfgn"></div>
+ <div class="shared">
+  <div class="f"><label for="g_n"><span class="sym">n</span><span data-q="n"></span></label><div class="hint" data-h="n"></div><div class="in"><input type="range" id="g_n" min="1" max="20" step="1"><div class="val" id="g_n_v"></div></div></div>
+  <div class="f"><label for="g_i"><span class="sym">i</span><span data-q="i"></span></label><div class="hint" data-h="i"></div><div class="in"><input type="range" id="g_i" min="1" max="40" step="0.5"><div class="val" id="g_i_v"></div></div></div>
+ </div></section>
 <div class="grid">
  <section class="panel" style="--c:var(--b)">
   <div class="ph"><svg viewBox="0 0 120 150" aria-hidden="true">
@@ -116,7 +134,7 @@ code{display:block;margin-top:10px;background:#0d1015;padding:10px;border-radius
    <path d="M50 53 Q60 59 70 53" stroke="#2b3b16" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
    <div><span class="tag" id="t_a_tag"></span><h2 id="t_a"></h2><div class="sub" id="t_a_s"></div></div></div>
   <div id="fa"></div></section>
- <section class="panel" style="--c:var(--r)">
+ <section class="panel" style="--c:var(--r)"><button class="rm" id="rmB"></button>
   <div class="ph"><svg viewBox="0 0 120 150" aria-hidden="true">
    <path d="M26 66 L94 66 L108 146 L12 146Z" fill="#14171c"/>
    <rect x="40" y="108" width="18" height="34" rx="3" fill="#1d1d1f"/><rect x="62" y="108" width="18" height="34" rx="3" fill="#1d1d1f"/>
@@ -133,6 +151,7 @@ code{display:block;margin-top:10px;background:#0d1015;padding:10px;border-radius
    <path d="M56 50 L60 58 L64 50Z" fill="#2a2c31"/><rect x="50" y="56" width="20" height="9" rx="2" fill="#3a3d44"/><path d="M54 56v9M58 56v9M62 56v9M66 56v9" stroke="#121214" stroke-width="1.5"/></svg>
    <div><span class="tag" id="t_b_tag"></span><h2 id="t_b"></h2><div class="sub" id="t_b_s"></div></div></div>
   <div id="fb"></div></section>
+ <button class="addcard" id="addB"><span class="plus">+</span><b id="t_add" style="font-size:1.05rem"></b><small id="t_addh"></small></button>
 </div>
 
 <div class="row"><button class="btn" id="calc"></button><button class="ghost" id="reset"></button><span class="live" id="live"></span></div>
@@ -1399,14 +1418,14 @@ module.exports = QRRSBlock;
 window.QRLib={QRCode:req("index"),EC:req("QRErrorCorrectLevel")};})();</script>
 <script>
 const PUBLIC_URL="";
-const D={A:{I:12e6,n:2,C:3e6,S:2e6,i:10},B:{I:14e6,n:3,C:2e6,S:4e6,i:10}};
+const D={A:{I:12e6,n:3,C:3e6,S:2e6,i:10},B:{I:14e6,n:3,C:2e6,S:4e6,i:10}};
 const S=JSON.parse(JSON.stringify(D));
-const K=["I","n","C","S","i"];
+const K=["I","C","S"];
 const T={es:{
 title:"Plataforma de Análisis Financiero: Costo Anual Equivalente (CAE)",
-sub:"Análisis de reemplazo de activos · Alternativa A vs. Alternativa B",
+sub:"Análisis de activos y decisiones de reemplazo",
 ih:"¿Qué responde esta herramienta?",
-ip:"Indica cuál de las dos máquinas le cuesta menos por año, considerando todo: lo que se paga al comprarla, lo que se gasta en operarla y lo que se recupera al venderla. Ese promedio anual se llama Costo Anual Equivalente (CAE).",
+ip:"Calcula cuánto le cuesta por año una máquina, considerando todo: lo que se paga al comprarla, lo que se gasta en operarla y lo que se recupera al venderla. Ese promedio anual se llama Costo Anual Equivalente (CAE). Si necesita decidir entre dos máquinas, agregue la segunda con el botón +.",
 steps:["Ingrese los datos de cada máquina. Ya hay valores de ejemplo.","El resultado se actualiza automáticamente al cambiar cualquier dato.","Revise la recomendación y el detalle del costo para decidir."],
 tagA:"Activo actual",tagB:"Activo nuevo",a:"Máquina A",b:"Máquina B",as:"Alternativa A · Lado de la Luz",bs:"Alternativa B · Lado Oscuro",
 f:{I:["¿Cuánto cuesta adquirir la máquina?","Precio de compra e instalación. Término técnico: Inversión Inicial (I).","$"],
@@ -1426,9 +1445,9 @@ g:[["I","Inversión Inicial","Lo que se paga por adquirir la máquina."],["n","V
 qr:"Código QR de acceso a esta página",qrd:"Pegue en el campo de abajo la dirección web pública donde publique este archivo y escanee el código con un celular para abrirla en el navegador.",qrl:"Dirección web (URL)",mk:"Generar código QR"},
 en:{
 title:"Financial Analysis Platform: Equivalent Annual Cost (EAC)",
-sub:"Asset replacement analysis · Alternative A vs. Alternative B",
+sub:"Asset analysis and replacement decisions",
 ih:"What does this tool answer?",
-ip:"It shows which of the two machines costs less per year, considering everything: what is paid to buy it, what it costs to run and what is recovered when it is sold. That yearly average is called the Equivalent Annual Cost (EAC).",
+ip:"It calculates how much one machine costs per year, considering everything: what is paid to buy it, what it costs to run and what is recovered when it is sold. That yearly average is called the Equivalent Annual Cost (EAC). To decide between two machines, add the second one with the + button.",
 steps:["Enter the data for each machine. Sample values are preloaded.","Results update automatically whenever you change a value.","Review the recommendation and cost detail to decide."],
 tagA:"Current asset",tagB:"New asset",a:"Machine A",b:"Machine B",as:"Alternative A · Light Side",bs:"Alternative B · Dark Side",
 f:{I:["How much does the machine cost to acquire?","Purchase and installation price. Technical term: Initial Investment (I).","$"],
@@ -1448,9 +1467,9 @@ g:[["I","Initial Investment","What is paid to acquire the machine."],["n","Usefu
 qr:"QR code to access this page",qrd:"Paste below the public web address where you publish this file, then scan the code with a phone to open it in the browser.",qrl:"Web address (URL)",mk:"Generate QR code"}};
 T.fr={
 title:"Plateforme d'analyse financière : Coût annuel équivalent (CAE)",
-sub:"Analyse de remplacement d'actifs · Alternative A et Alternative B",
+sub:"Analyse d'actifs et décisions de remplacement",
 ih:"À quelle question répond cet outil ?",
-ip:"Il indique laquelle des deux machines coûte le moins cher par an, en tenant compte de tout : le prix d'achat, le coût d'exploitation et le montant récupéré à la revente. Cette moyenne annuelle s'appelle le Coût annuel équivalent (CAE).",
+ip:"Il calcule combien coûte une machine par an, en tenant compte de tout : le prix d'achat, le coût d'exploitation et le montant récupéré à la revente. Cette moyenne annuelle s'appelle le Coût annuel équivalent (CAE). Pour choisir entre deux machines, ajoutez la seconde avec le bouton +.",
 steps:["Saisissez les données de chaque machine. Des valeurs d'exemple sont déjà chargées.","Le résultat se met à jour automatiquement à chaque modification.","Consultez la recommandation et le détail des coûts pour décider."],
 tagA:"Actif actuel",tagB:"Actif neuf",a:"Machine A",b:"Machine B",as:"Alternative A · Côté Lumineux",bs:"Alternative B · Côté Obscur",
 f:{I:["Combien coûte l'acquisition de la machine ?","Prix d'achat et d'installation. Terme technique : Investissement initial (I).","$"],
@@ -1473,6 +1492,15 @@ es:{best:"Recomendada",tw:"El costo anual, en ladrillos",tu:v=>`Cada ladrillo eq
 en:{best:"Recommended",tw:"Annual cost, in bricks",tu:v=>`Each brick equals ${v} per year.`,sens:"Does the decision change if the rate changes?",robust:x=>`${x} keeps the lowest annual cost across the whole rate range (1% to 30%): the recommendation is stable.`,cross:r=>`Note: the cheapest alternative changes around a ${r}% rate.`},
 fr:{best:"Recommandée",tw:"Le coût annuel, en briques",tu:v=>`Chaque brique équivaut à ${v} par an.`,sens:"La décision change-t-elle si le taux change ?",robust:x=>`La ${x} conserve le coût annuel le plus bas sur toute la plage de taux (1 % à 30 %) : la recommandation est stable.`,cross:r=>`Attention : l'alternative la moins chère change autour d'un taux de ${r} %.`}};
 Object.keys(X).forEach(l=>Object.assign(T[l],X[l]));
+const Y={
+es:{cfg:"Configuración del análisis",cfgn:"La vida útil y la tasa de descuento son únicas y se aplican por igual a todas las máquinas analizadas.",m2:"Comparar dos máquinas",m1:"Analizar una máquina",bc:"Componentes del costo anual",cats:["Compra anual","Operación","Reventa","CAE"],cae1:"Costo anual equivalente de la máquina",one:v=>`Equivale aproximadamente a ${v} por mes.`,why1:c=>`<b>En palabras simples:</b> cada año, usar esta máquina le cuesta en promedio ${c}. Esa cifra ya incluye la compra distribuida en sus años de uso, los gastos de operación y descuenta lo que recuperaría al revenderla. Sirve como referencia para presupuestar o para compararla después con otra alternativa.`,sens1t:"¿Cómo cambia el costo según la tasa?",sens1:"La curva muestra cómo varía el CAE si cambia la tasa de descuento; el punto marca la tasa actual."},
+en:{cfg:"Analysis settings",cfgn:"Useful life and discount rate are single values applied equally to all machines analyzed.",m2:"Compare two machines",m1:"Analyze one machine",bc:"Annual cost components",cats:["Yearly purchase","Operation","Resale","EAC"],cae1:"Equivalent annual cost of the machine",one:v=>`Roughly ${v} per month.`,why1:c=>`<b>In plain words:</b> each year, using this machine costs you ${c} on average. That figure already includes the purchase spread over its years of use, the operating expenses, and subtracts what you would recover by reselling it. Use it as a reference for budgeting or to compare it later with another alternative.`,sens1t:"How does the cost change with the rate?",sens1:"The curve shows how the EAC varies if the discount rate changes; the dot marks the current rate."},
+fr:{cfg:"Paramètres de l'analyse",cfgn:"La durée de vie utile et le taux d'actualisation sont uniques et s'appliquent de la même façon à toutes les machines analysées.",m2:"Comparer deux machines",m1:"Analyser une machine",bc:"Composantes du coût annuel",cats:["Achat annuel","Exploitation","Revente","CAE"],cae1:"Coût annuel équivalent de la machine",one:v=>`Environ ${v} par mois.`,why1:c=>`<b>En termes simples :</b> chaque année, utiliser cette machine vous coûte en moyenne ${c}. Ce chiffre inclut déjà l'achat réparti sur ses années d'utilisation, les frais d'exploitation, et déduit ce que vous récupéreriez à la revente. Il sert de référence pour budgétiser ou pour la comparer plus tard à une autre alternative.`,sens1t:"Comment le coût change-t-il selon le taux ?",sens1:"La courbe montre l'évolution du CAE si le taux d'actualisation change ; le point marque le taux actuel."}};
+const Z={es:{add:"Agregar otra máquina",addh:"Compare esta máquina con una alternativa de reemplazo",rm:"✕ Quitar",calc1:"Calcular"},
+en:{add:"Add another machine",addh:"Compare this machine with a replacement alternative",rm:"✕ Remove",calc1:"Calculate"},
+fr:{add:"Ajouter une autre machine",addh:"Comparez cette machine à une alternative de remplacement",rm:"✕ Retirer",calc1:"Calculer"}};
+Object.keys(Z).forEach(l=>Object.assign(T[l],Z[l]));
+Object.keys(Y).forEach(l=>Object.assign(T[l],Y[l]));
 let L="es";const $=id=>document.getElementById(id);
 const loc=()=>({es:"es-CO",en:"en-US",fr:"fr-FR"}[L]);
 const money=v=>new Intl.NumberFormat(loc(),{style:"currency",currency:"COP",maximumFractionDigits:0}).format(v);
@@ -1493,20 +1521,50 @@ build("A","fa");build("B","fb");
 function parts(p){const {I,n,C,S:s,i:r}=S[p],i=r/100;if(!(n>0&&i>0))return null;
  const f=Math.pow(1+i,n),c1=I*(i*f/(f-1)),c3=s*(i/(f-1));return{c1,c2:C,c3,t:c1+C-c3};}
 
-function skeleton(){const t=T[L];
+function skeleton2(){const t=T[L];
  const col=(p,c)=>`<div class="bk" style="--c:var(--${c})"><h3>${t[p.toLowerCase()]}</h3>
   <div class="ln"><span>${t.c1}</span><span id="${p}1"></span></div><div class="ln"><span>${t.c2}</span><span id="${p}2"></span></div>
   <div class="ln"><span>${t.c3}</span><span id="${p}3"></span></div><div class="ln t"><span>${t.tot}</span><span id="${p}4"></span></div></div>`;
  $("out").innerHTML=`<div class="win" id="win"><div class="tr">🏆</div><div><div class="k">${t.rec}</div><div class="big" id="wn"></div><div id="wd" class="sub" style="color:var(--tx)"></div></div></div>
  <div class="bars"><div class="bar"><span>${t.a}</span><div class="track"><i id="bA" style="background:var(--b)"></i></div><b id="vA"></b></div>
  <div class="bar"><span>${t.b}</span><div class="track"><i id="bB" style="background:var(--r)"></i></div><b id="vB"></b></div></div>
- <div class="viz"><div class="vc"><h3>${t.tw}</h3><div class="towers" id="towers"></div><div class="sub" id="tunit" style="text-align:center"></div></div>
+ <div class="viz"><div class="vc"><h3>${t.bc}</h3><div class="lg"><span style="--c:var(--b)">${t.a}</span><span style="--c:var(--r)">${t.b}</span></div><div id="bars2"></div></div>
  <div class="vc"><h3>${t.sens}</h3><div class="lg"><span style="--c:var(--b)">${t.a}</span><span style="--c:var(--r)">${t.b}</span></div><div id="chart"></div><div class="sub" id="cross"></div></div></div>
  <h3 style="margin:0 0 10px">${t.bk}</h3><div class="bd">${col("A","b")}${col("B","r")}</div>
  <div class="why" id="why"></div>
  <details><summary>${t.tech}</summary><code>${t.form}</code></details>`;}
 
-function calc(){const t=T[L],a=parts("A"),b=parts("B");
+let mode=1;
+function skeleton(){mode===1?skeleton1():skeleton2();}
+function skeleton1(){const t=T[L];
+ $("out").innerHTML=`<div class="win" id="win" style="--c:var(--b)"><div class="tr">📈</div><div><div class="k">${t.cae1}</div><div class="big" id="wn"></div><div id="wd" class="sub" style="color:var(--tx)"></div></div></div>
+ <div class="viz"><div class="vc"><h3>${t.bc}</h3><div id="bars2"></div></div>
+ <div class="vc"><h3>${t.sens1t}</h3><div class="lg"><span style="--c:var(--b)">${t.a}</span></div><div id="chart"></div><div class="sub" id="cross"></div></div></div>
+ <h3 style="margin:0 0 10px">${t.bk}</h3><div class="bd"><div class="bk" style="--c:var(--b)"><h3>${t.a}</h3>
+ <div class="ln"><span>${t.c1}</span><span id="A1"></span></div><div class="ln"><span>${t.c2}</span><span id="A2"></span></div>
+ <div class="ln"><span>${t.c3}</span><span id="A3"></span></div><div class="ln t"><span>${t.tot}</span><span id="A4"></span></div></div></div>
+ <div class="why" id="why"></div><details><summary>${t.tech}</summary><code>${t.form}</code></details>`;}
+function calc1(){const t=T[L],a=parts("A");
+ if(!a){$("wn").textContent=t.err;$("wd").textContent="";return;}
+ tween($("wn"),a.t);$("wd").textContent=t.one(money(a.t/12));
+ $("A1").textContent="+ "+money(a.c1);$("A2").textContent="+ "+money(a.c2);$("A3").textContent="− "+money(a.c3);$("A4").textContent=money(a.t);
+ $("why").innerHTML=t.why1(money(a.t));barchart(a,null,t);chart(t);
+ document.querySelectorAll(".panel").forEach(p=>p.classList.remove("champ"));lastW=null;}
+function barchart(a,b,t){const ser=[[a,"b"]];if(b)ser.push([b,"r"]);
+ const g=o=>[o.c1,o.c2,-o.c3,o.t],W=380,H=230,pl=46,pr=8,pt=18,pb=30;
+ const all=ser.flatMap(([o])=>g(o)),mx=Math.max(...all,0),mn=Math.min(...all,0),Y=v=>pt+(mx-v)/((mx-mn)||1)*(H-pt-pb);
+ const gw=(W-pl-pr)/4,bw=Math.min(36,gw/(ser.length+.7)),cm=v=>new Intl.NumberFormat(loc(),{notation:"compact",maximumFractionDigits:1}).format(v);
+ let o=`<svg class="bc" viewBox="0 0 ${W} ${H}" width="100%"><line x1="${pl}" x2="${W-pr}" y1="${pt}" y2="${pt}" stroke="#2a323d"/><line x1="${pl}" x2="${W-pr}" y1="${Y(0)}" y2="${Y(0)}" stroke="#52606f"/>
+ <g fill="#94a0ad" font-size="10"><text x="2" y="${pt+4}">${cm(mx)}</text><text x="2" y="${Y(0)+3}">0</text>${mn<0?`<text x="2" y="${H-pb+3}">${cm(mn)}</text>`:""}</g>`;
+ for(let j=0;j<4;j++){const cx=pl+gw*j+gw/2;
+  ser.forEach(([ob,c],k)=>{const v=g(ob)[j],y=Y(v),x=cx-ser.length*bw/2+k*bw,h=Math.abs(Y(0)-y);
+   o+=`<rect x="${x+1}" y="${Math.min(y,Y(0))}" width="${bw-2}" height="${Math.max(h,1)}" rx="3" fill="var(--${c})" style="transform-origin:${v>=0?"bottom":"top"}"/><text x="${x+bw/2}" y="${v>=0?y-4:y+12}" fill="#e8ecf1" font-size="9" text-anchor="middle">${v<0?"−":""}${cm(Math.abs(v))}</text>`;});
+  o+=`<text x="${cx}" y="${H-8}" fill="#cfd6dd" font-size="10" text-anchor="middle">${t.cats[j]}</text>`;}
+ $("bars2").innerHTML=o+"</svg>";}
+function syncG(){["n","i"].forEach(k=>{$("g_"+k).value=S.A[k];$("g_"+k+"_v").textContent=k==="n"?`${S.A[k]} ${T[L].yrs}`:`${S.A[k]} %`;});}
+function applyMode(){document.querySelectorAll(".panel")[1].style.display=mode===2?"":"none";
+ $("addB").style.display=mode===2?"none":"";$("calc").textContent=mode===2?T[L].calc:T[L].calc1;skeleton();calc();}
+function calc(){if(mode===1)return calc1();const t=T[L],a=parts("A"),b=parts("B");
  if(!a||!b){$("wn").textContent=t.err;$("wd").textContent="";return;}
  const w=a.t<=b.t?"A":"B",lo=Math.min(a.t,b.t),hi=Math.max(a.t,b.t),d=hi-lo,tie=d<0.5;
  const win=$("win");win.style.setProperty("--c",w==="A"?"var(--b)":"var(--r)");
@@ -1524,18 +1582,18 @@ function towers(a,b,t){const mx=Math.max(a.t,b.t),n=v=>Math.max(1,Math.round(v/m
  col=(v,c,nm)=>`<div class="tw" style="--c:var(--${c})"><div class="st">${Array.from({length:n(v)},(_,j)=>`<i style="animation-delay:${j*50}ms"></i>`).join("")}</div><span>${nm}</span></div>`;
  $("towers").innerHTML=col(a.t,"b",t.a)+col(b.t,"r",t.b);$("tunit").textContent=t.tu(money(mx/10));}
 function chart(t){const W=360,H=190,pl=40,pb=24,pt=10,pr=10,pa=[],pb2=[];
- for(let r=1;r<=30;r++){pa.push(caeAt("A",r));pb2.push(caeAt("B",r));}
+ for(let r=1;r<=30;r++){pa.push(caeAt("A",r));if(mode===2)pb2.push(caeAt("B",r));}
  const all=pa.concat(pb2),mn=Math.min(...all),mx=Math.max(...all),X=r=>pl+(r-1)/29*(W-pl-pr),Y=v=>pt+(1-(v-mn)/(mx-mn||1))*(H-pt-pb);
  const path=a=>a.map((v,j)=>(j?"L":"M")+X(j+1).toFixed(1)+" "+Y(v).toFixed(1)).join("");
  const cm=v=>new Intl.NumberFormat(loc(),{notation:"compact",maximumFractionDigits:1}).format(v);
  let cross=null;for(let j=1;j<30;j++)if((pa[j]-pb2[j])*(pa[j-1]-pb2[j-1])<0){cross=j+1;break;}
  const dot=(p,c)=>{const r=Math.min(30,Math.max(1,S[p].i));return `<circle cx="${X(r)}" cy="${Y(caeAt(p,r))}" r="5" fill="var(--${c})" stroke="#fff" stroke-width="1.5"/>`;};
- $("chart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%"><g stroke="#2a323d"><line x1="${pl}" y1="${pt}" x2="${W-pr}" y2="${pt}"/><line x1="${pl}" y1="${(pt+H-pb)/2}" x2="${W-pr}" y2="${(pt+H-pb)/2}"/><line x1="${pl}" y1="${H-pb}" x2="${W-pr}" y2="${H-pb}"/></g><g fill="#94a0ad" font-size="10"><text x="2" y="${pt+4}">${cm(mx)}</text><text x="2" y="${H-pb+3}">${cm(mn)}</text><text x="${pl}" y="${H-6}">1%</text><text x="${X(15)-8}" y="${H-6}">15%</text><text x="${W-pr-20}" y="${H-6}">30%</text></g><path d="${path(pa)}" fill="none" stroke="var(--b)" stroke-width="3" stroke-linecap="round"/><path d="${path(pb2)}" fill="none" stroke="var(--r)" stroke-width="3" stroke-linecap="round"/>${dot("A","b")}${dot("B","r")}</svg>`;
- $("cross").textContent=cross?t.cross(cross):t.robust(pa[0]<pb2[0]?t.a:t.b);}
+ $("chart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%"><g stroke="#2a323d"><line x1="${pl}" y1="${pt}" x2="${W-pr}" y2="${pt}"/><line x1="${pl}" y1="${(pt+H-pb)/2}" x2="${W-pr}" y2="${(pt+H-pb)/2}"/><line x1="${pl}" y1="${H-pb}" x2="${W-pr}" y2="${H-pb}"/></g><g fill="#94a0ad" font-size="10"><text x="2" y="${pt+4}">${cm(mx)}</text><text x="2" y="${H-pb+3}">${cm(mn)}</text><text x="${pl}" y="${H-6}">1%</text><text x="${X(15)-8}" y="${H-6}">15%</text><text x="${W-pr-20}" y="${H-6}">30%</text></g><path d="${path(pa)}" fill="none" stroke="var(--b)" stroke-width="3" stroke-linecap="round"/>${mode===2?`<path d="${path(pb2)}" fill="none" stroke="var(--r)" stroke-width="3" stroke-linecap="round"/>`:""}${dot("A","b")}${mode===2?dot("B","r"):""}</svg>`;
+ $("cross").textContent=mode===1?t.sens1:(cross?t.cross(cross):t.robust(pa[0]<pb2[0]?t.a:t.b));}
 function burst(c){for(let j=0;j<18;j++){const e=document.createElement("b");e.className="cf";
  e.style.cssText=`background:${j%3?c:"#f5c400"};--x:${(Math.random()-.5)*600}px;--r:${Math.random()*720}deg;margin-left:${(Math.random()-.5)*60}px`;document.body.appendChild(e);setTimeout(()=>e.remove(),1400);}}
 let lastW=null;
-function visuals(a,b,w,t){towers(a,b,t);chart(t);
+function visuals(a,b,w,t){barchart(a,b,t);chart(t);
  document.querySelectorAll(".panel").forEach((p,j)=>{p.classList.toggle("champ",(j===0)===(w==="A"));p.dataset.badge="★ "+t.best;});
  if(lastW&&lastW!==w)burst(w==="A"?"#00a2ff":"#ff2a2a");lastW=w;}
 function render(){const t=T[L];document.documentElement.lang=L;document.title=t.title;
@@ -1546,18 +1604,20 @@ function render(){const t=T[L];document.documentElement.lang=L;document.title=t.
  $("t_a_s").textContent=t.as;$("t_b_s").textContent=t.bs;
  document.querySelectorAll("[data-q]").forEach(e=>e.textContent=t.f[e.dataset.q][0]);
  document.querySelectorAll("[data-h]").forEach(e=>e.textContent=t.f[e.dataset.h][1]);
- $("calc").textContent=t.calc;$("reset").textContent=t.reset;$("live").textContent=t.live;$("t_res").textContent=t.res;
+ $("t_cfg").textContent=t.cfg;$("t_cfgn").textContent=t.cfgn;$("t_add").textContent=t.add;$("t_addh").textContent=t.addh;$("rmB").textContent=t.rm;$("calc").textContent=t.calc;$("reset").textContent=t.reset;$("live").textContent=t.live;$("t_res").textContent=t.res;
  $("t_gl").textContent=t.gl;$("glos").innerHTML=t.g.map(g=>`<div class="g"><span class="sym">${g[0]}</span><b>${g[1]}</b><p>${g[2]}</p></div>`).join("");
  $("t_qr").textContent=t.qr;$("t_qr_d").textContent=t.qrd;$("t_qr_l").textContent=t.qrl;$("mkqr").textContent=t.mk;
- sync("A");sync("B");skeleton();calc();}
+ sync("A");sync("B");syncG();applyMode();}
 function qr(){const u=$("url").value.trim(),box=$("qrbox");box.innerHTML="";if(!u)return;
  const q=new QRLib.QRCode(-1,QRLib.EC.M);q.addData(u);q.make();const n=q.getModuleCount();let r="";
  for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(q.isDark(y,x))r+=`<rect x="${x+2}" y="${y+2}" width="1.02" height="1.02"/>`;
  box.innerHTML=`<svg viewBox="0 0 ${n+4} ${n+4}" width="180" height="180" shape-rendering="crispEdges" fill="#000"><rect width="100%" height="100%" fill="#fff"/>${r}</svg>`;}
 ["es","en","fr"].forEach(x=>$("l_"+x).onclick=()=>{L=x;render();});
 $("calc").onclick=()=>{calc();$("resbox").scrollIntoView({behavior:"smooth",block:"start"});};
-$("reset").onclick=()=>{["A","B"].forEach(p=>K.forEach(k=>S[p][k]=D[p][k]));sync("A");sync("B");calc();};
+$("reset").onclick=()=>{["A","B"].forEach(p=>Object.assign(S[p],D[p]));sync("A");sync("B");syncG();calc();};
 $("mkqr").onclick=qr;
+["n","i"].forEach(k=>$("g_"+k).addEventListener("input",e=>{S.A[k]=S.B[k]=parseFloat(e.target.value);syncG();calc();}));
+$("addB").onclick=()=>{mode=2;applyMode();$("resbox").scrollIntoView({behavior:"smooth",block:"start"});};$("rmB").onclick=()=>{mode=1;applyMode();};
 $("url").value=PUBLIC_URL||(location.protocol.startsWith("http")?location.href:"");
 render();qr();
 </script></body></html>
